@@ -1,6 +1,13 @@
 package byteconv
 
-import "unsafe"
+import (
+	"errors"
+	"unsafe"
+)
+
+var (
+	errTypeNotSupported error = errors.New("unsupported type")
+)
 
 func ToBytes(val interface{}) ([]byte, error) {
 	return encoderSwitch(val)
@@ -37,7 +44,7 @@ func encoderSwitch(val interface{}) ([]byte, error) {
 	case uint64:
 		return intEncoder(int(val.(uint64))), nil
 	}
-	return nil, unsupType
+	return nil, errTypeNotSupported
 }
 
 func boolEncoder(val bool) []byte {

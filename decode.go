@@ -1,6 +1,13 @@
 package byteconv
 
-import "unsafe"
+import (
+	"errors"
+	"unsafe"
+)
+
+var (
+	wrongSize error = errors.New("wrong size byte array")
+)
 
 func ToInt(arr []byte) (int, error) {
 	size := len(arr)
