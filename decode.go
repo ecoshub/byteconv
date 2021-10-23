@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	wrongSize error = errors.New("wrong size byte array")
+	errWrongSize error = errors.New("wrong size byte array")
 )
 
 func ToInt(arr []byte) (int, error) {
@@ -43,7 +43,7 @@ func ToString(arr []byte) (string, error) {
 func ToBool(arr []byte) (bool, error) {
 	lena := len(arr)
 	if lena != 1 {
-		return false, wrongSize
+		return false, errWrongSize
 	}
 	if arr[0] == 1 {
 		return true, nil
