@@ -14,37 +14,38 @@ func ToBytes(val interface{}) ([]byte, error) {
 }
 
 func encoderSwitch(val interface{}) ([]byte, error) {
-	switch val.(type) {
+	switch t := val.(type) {
 	case bool:
-		return boolEncoder(val.(bool)), nil
+		return boolEncoder(t), nil
 	case string:
-		return stringEncoder(val.(string)), nil
+		return stringEncoder(t), nil
 	case float64:
-		return floatEncoder(val.(float64)), nil
+		return floatEncoder(t), nil
 	case float32:
-		return floatEncoder(float64(val.(float32))), nil
+		return floatEncoder(float64(t)), nil
 	case int:
-		return intEncoder(val.(int)), nil
+		return intEncoder(t), nil
 	case int8:
-		return intEncoder(int(val.(int8))), nil
+		return intEncoder(int(t)), nil
 	case int16:
-		return intEncoder(int(val.(int16))), nil
+		return intEncoder(int(t)), nil
 	case int32:
-		return intEncoder(int(val.(int32))), nil
+		return intEncoder(int(t)), nil
 	case int64:
-		return intEncoder(int(val.(int64))), nil
+		return intEncoder(int(t)), nil
 	case uint:
-		return intEncoder(int(val.(uint))), nil
+		return intEncoder(int(t)), nil
 	case uint8:
-		return intEncoder(int(val.(uint8))), nil
+		return intEncoder(int(t)), nil
 	case uint16:
-		return intEncoder(int(val.(uint16))), nil
+		return intEncoder(int(t)), nil
 	case uint32:
-		return intEncoder(int(val.(uint32))), nil
+		return intEncoder(int(t)), nil
 	case uint64:
-		return intEncoder(int(val.(uint64))), nil
+		return intEncoder(int(t)), nil
+	default:
+		return nil, errTypeNotSupported
 	}
-	return nil, errTypeNotSupported
 }
 
 func boolEncoder(val bool) []byte {

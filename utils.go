@@ -12,6 +12,7 @@ func sizeCheck(size int) error {
 		return errNullArray
 	case 8, 16, 32, 64:
 		return nil
+	default:
+		return errWrongSize
 	}
-	return wrongSize
 }
